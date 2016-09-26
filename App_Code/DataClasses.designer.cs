@@ -47,6 +47,9 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertIPdeny(IPdeny instance);
   partial void UpdateIPdeny(IPdeny instance);
   partial void DeleteIPdeny(IPdeny instance);
+  partial void Insertpicture(picture instance);
+  partial void Updatepicture(picture instance);
+  partial void Deletepicture(picture instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -124,6 +127,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<IPdeny>();
+		}
+	}
+	
+	public System.Data.Linq.Table<picture> picture
+	{
+		get
+		{
+			return this.GetTable<picture>();
 		}
 	}
 }
@@ -1357,6 +1368,188 @@ public partial class IPdeny : INotifyPropertyChanging, INotifyPropertyChanged
 				this._logindate = value;
 				this.SendPropertyChanged("logindate");
 				this.OnlogindateChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.picture")]
+public partial class picture : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private System.Nullable<int> _u_id;
+	
+	private string _pic_name;
+	
+	private string _pic_type;
+	
+	private System.Nullable<System.DateTime> _changetime;
+	
+	private string _read_text;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onu_idChanging(System.Nullable<int> value);
+    partial void Onu_idChanged();
+    partial void Onpic_nameChanging(string value);
+    partial void Onpic_nameChanged();
+    partial void Onpic_typeChanging(string value);
+    partial void Onpic_typeChanged();
+    partial void OnchangetimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnchangetimeChanged();
+    partial void Onread_textChanging(string value);
+    partial void Onread_textChanged();
+    #endregion
+	
+	public picture()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_u_id", DbType="Int")]
+	public System.Nullable<int> u_id
+	{
+		get
+		{
+			return this._u_id;
+		}
+		set
+		{
+			if ((this._u_id != value))
+			{
+				this.Onu_idChanging(value);
+				this.SendPropertyChanging();
+				this._u_id = value;
+				this.SendPropertyChanged("u_id");
+				this.Onu_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pic_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string pic_name
+	{
+		get
+		{
+			return this._pic_name;
+		}
+		set
+		{
+			if ((this._pic_name != value))
+			{
+				this.Onpic_nameChanging(value);
+				this.SendPropertyChanging();
+				this._pic_name = value;
+				this.SendPropertyChanged("pic_name");
+				this.Onpic_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pic_type", DbType="VarChar(25)")]
+	public string pic_type
+	{
+		get
+		{
+			return this._pic_type;
+		}
+		set
+		{
+			if ((this._pic_type != value))
+			{
+				this.Onpic_typeChanging(value);
+				this.SendPropertyChanging();
+				this._pic_type = value;
+				this.SendPropertyChanged("pic_type");
+				this.Onpic_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_changetime", DbType="DateTime")]
+	public System.Nullable<System.DateTime> changetime
+	{
+		get
+		{
+			return this._changetime;
+		}
+		set
+		{
+			if ((this._changetime != value))
+			{
+				this.OnchangetimeChanging(value);
+				this.SendPropertyChanging();
+				this._changetime = value;
+				this.SendPropertyChanged("changetime");
+				this.OnchangetimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_read_text", DbType="VarChar(100)")]
+	public string read_text
+	{
+		get
+		{
+			return this._read_text;
+		}
+		set
+		{
+			if ((this._read_text != value))
+			{
+				this.Onread_textChanging(value);
+				this.SendPropertyChanging();
+				this._read_text = value;
+				this.SendPropertyChanged("read_text");
+				this.Onread_textChanged();
 			}
 		}
 	}

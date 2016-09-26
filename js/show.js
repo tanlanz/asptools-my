@@ -3,6 +3,22 @@
         type: 1
     }
     ajaxload(data);
+
+    //pic_head
+    var data_pic = {
+        type1: 3
+    }
+    $.ajax({
+        data: data_pic,
+        type: "Post",
+        url: "../ashx/pic_show.ashx",
+        datatype: "html",
+        success: function (data, datatype) {
+            if (data != null && data != "") {
+                $("#pic_head").html(data);
+            }
+        }
+    });
 }
 
 function adminload() {
@@ -11,7 +27,7 @@ function adminload() {
     }
     ajaxload(data);
 }
-function save(id) {
+function save(id) {//保存
     var ss = "ss" + id;
     var tt = "tt" + id;
     var s1 = $("#" + ss + "").val(); var t1 = $("#" + tt + "").val();
@@ -38,7 +54,7 @@ function save(id) {
         }
     }    
 }
-function delete1(id) {
+function delete1(id) {//删除
     var data = {
         type: 3,
         id: id
@@ -55,7 +71,7 @@ function delete1(id) {
         }
     });
 }
-function add1() {
+function add1() {//添加
     var data = {
         type: 4,
     }
@@ -72,7 +88,7 @@ function add1() {
     });
 }
 
-function permitShow(id) {
+function permitShow(id) {//允许在页面显示
     var data = {
         type: 5,
         id_p:id
@@ -90,7 +106,7 @@ function permitShow(id) {
         }
     });
 }
-function denyShow(id) {
+function denyShow(id) {//拒绝在页面显示
     var data = {
         type: 6,
         id_d:id

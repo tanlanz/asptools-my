@@ -31,7 +31,23 @@ function pic_upload_show() {
 
 //删除已有图片
 function pic_upload(id) {    
-
+    var data = {
+        type1: 2,
+        pic_id: id
+    }
+    $.ajax({
+        data: data,
+        type: "Post",
+        url: "../ashx/pic_show.ashx",
+        datatype: "html",
+        success: function (data, datatype) {
+            //alert(data);
+            if (data == "error") {
+                alert("ERROR");
+            }
+            else eval(data);
+        }
+    });
     $("#pic_delete").click(function(){
         //alert(id);
         var data = {
@@ -51,6 +67,27 @@ function pic_upload(id) {
                 else window.location.href = "media.html";
             }
         });
+    });
+    $("#pic_change").click(function () {
+        window.location.href = "#myPic";
+        //alert(id);
+        //var data = {
+        //    type1: 3,
+        //    pic_id: id
+        //}
+        //$.ajax({
+        //    data: data,
+        //    type: "Post",
+        //    url: "../ashx/pic_show.ashx",
+        //    datatype: "html",
+        //    success: function (data, datatype) {
+        //        //alert(data);
+        //        if (data == "error") {
+        //            alert("ERROR");
+        //        }
+        //        else window.location.href = "media.html";
+        //    }
+        //});
     });
 }
 

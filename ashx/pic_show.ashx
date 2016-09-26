@@ -10,7 +10,7 @@ public class pic_show : IHttpHandler {
         context.Response.ContentType = "text/plain";
         PicDealBLL pic = new PicDealBLL();
         string type1 = context.Request["type1"];
-        if (type1 == "0")
+        if (type1 == "0")//显示所有的图片
         {
             context.Response.Write(pic.pic_show());
         }
@@ -18,10 +18,19 @@ public class pic_show : IHttpHandler {
         {
             context.Response.Write("error");
         }
-        else if (type1 == "1")
+        else if (type1 == "1")//删除图片
         {
             int picName =Int16.Parse(context.Request["pic_id"]);
             context.Response.Write(pic.pic_delete(picName));
+        }
+        else if (type1 == "2")//显示选定的图片
+        {
+            int picName =Int16.Parse(context.Request["pic_id"]);
+            context.Response.Write(pic.pic_show(picName));
+        }
+        else if (type1 == "3")//显示选定的图片
+        {
+            context.Response.Write(pic.pic_show_head());
         }
     }
 

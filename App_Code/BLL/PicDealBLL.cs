@@ -14,13 +14,13 @@ namespace BLL
 {
     public class PicDealBLL
     {
+        pictureDAL picDal = new pictureDAL();
         public PicDealBLL()
         {
             //
             // TODO: 在此处添加构造函数逻辑
             //
         }
-        //本次修改均没有连接数据库需要设计数据库
         
         DirectoryInfo TheFolder = new DirectoryInfo(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload");
 
@@ -33,12 +33,12 @@ namespace BLL
         public string pic_show()
         {
             string pic_text = "";
-
             try
             {
                 //遍历文件夹
                 //foreach(DirectoryInfo NextFolder in TheFolder.GetDirectories())
                 //   this.listBox1.Items.Add(NextFolder.Name);
+
                 //显示文件夹所拥有的图片
                 string name = "";
                 int pic_number = 0;
@@ -51,6 +51,20 @@ namespace BLL
                     pic_text += "<a href=\"#myModal\" role=\"button\" data-toggle=\"modal\" onclick=\"pic_upload(" + pic_number + ")\" >";
                     pic_text += "<img src=\"../upload/" + name + "\" class=\"img-polaroid\" style=\"max-width:" + width + "px;myimg:expression_r(onload=function(){this.style.width=(this.offsetWidth > " + width + ")?\"" + width + "px\":\"auto\"});\" alt=\"null\"></a>&nbsp;&nbsp;";//宽度可调
                     pic_number++;
+                    if(picDal.Get_pictureBypicture(NextFile.Name) == null)
+                    {//添加图片进数据库
+                        try
+                        {
+                            picture pic = new picture();
+                            pic.pic_name = name;
+                            pic.changetime = DateTime.Now;
+                            picDal.Insert_picture(pic);
+                        }
+                        catch (Exception ex)
+                        {
+                            return ex.ToString();
+                        }
+                    }
                 }
                 pic_text += "');$(\"#images_number\").html('" + pic_number + "');";
                 if (pic_text.Length < 1)
@@ -79,10 +93,16 @@ namespace BLL
             {
                 //判断文件是不是存在
                 //if (File.Exists(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload\" + picName + ""))
+                
                 if (File.Exists(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload\" + TheFolder.GetFiles()[pic_id] + ""))
                 {
+                    string pic_name = TheFolder.GetFiles()[pic_id].ToString();
                     //如果存在则删除
-                    File.Delete(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload\" + TheFolder.GetFiles()[pic_id] + "");
+                    File.Delete(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload\" + pic_name + "");
+                    picture pic = picDal.Get_pictureBypicture(pic_name);
+                    if (pic != null){
+                        picDal.Detele_pictureById(pic.id);
+                    }
                     pic_text = "删除成功";
                 }
                 else pic_text = TheFolder.GetFiles()[pic_id].ToString();
@@ -130,7 +150,7 @@ namespace BLL
                                     //第一个长方形参数：要把原图 画成多大  
                                     //第二个长方形参数：要画原图的哪个部分(要把原图的哪个部分画到缩略图上)  
                                     g.DrawImage(img, new Rectangle(0, 0, thumbImg.Width, thumbImg.Height), new Rectangle(0, 0, img.Width, img.Height), GraphicsUnit.Pixel);
-                                    string thumbImgPath = HttpContext.Current.Server.MapPath("../upload/theme/" + fileName);
+                                    string thumbImgPath = HttpContext.Current.Server.MapPath("../upload/theme/" + fileName+"_thumb");
                                     thumbImg.Save(thumbImgPath);
                                     //context.Response.Write("制作小图成功：" + "/theme" + fileName);
                                 }
@@ -144,6 +164,55 @@ namespace BLL
                 return ex.ToString();
             }
 
+            return pic_text;
+        }
+
+        //显示单一的图片，返回图片地址
+        public string pic_show(int pic_id)
+        {
+            string pic_text = "";
+            try
+            {
+                //判断文件是不是存在
+
+                if (File.Exists(@"F:\DownloadSave\OthersCode\CodeWeb\MyselfSite\asptools-my\upload\" + TheFolder.GetFiles()[pic_id] + ""))
+                {
+                    pic_text += "$(\"#pic_show\").html('";
+                    string pic_name = TheFolder.GetFiles()[pic_id].ToString();
+                   
+                    pic_text += "<img src=\"../upload/" + pic_name + "\" class=\"img-polaroid\">');";
+                }
+                else pic_text = "error";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+            return pic_text;
+        }
+
+
+        //显示头像，返回图片html
+        public string pic_show_head()
+        {
+            string pic_text = "";
+            try
+            {
+                //判断文件是不是存在
+
+                if (picDal.Get_pictureForHead() != null)
+                {
+                    picture pic = picDal.Get_pictureForHead();
+                    string pic_name = pic.pic_name;
+
+                    pic_text += "<img src=\"../upload/" + pic_name + "\"alt=\"test\">";
+                }
+                else pic_text = "error";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
             return pic_text;
         }
     }
