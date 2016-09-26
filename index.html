@@ -1,0 +1,152 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>小页</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+		<!-- Header -->
+			<div id="header">
+				<div class="top">
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><a href="https://tanlanz.github.io/cv/"><img src="images/avatar1.jpg" alt="" /></a></span>
+							<h1 id="title">JQ Zhu</h1>
+							<p>码农</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">首页</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">相关</span></a></li>
+								<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">关于我</span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">联系</span></a></li>
+							</ul>
+						</nav>
+				</div>
+				<div class="bottom">
+					<!-- Social Icons -->
+						<ul class="icons">
+							<!--<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>-->
+							<!--<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>-->
+							<li><a href="https://github.com/tanlanz/" class="icon fa-github"><span class="label">Github</span></a></li>
+							<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+                            <li><a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1398643108&website=www.oicqzone.com" class="icon fa-user"><span class="label">Dribbble</span></a></li>
+							<!--<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>-->
+						</ul>
+				</div>
+			</div>
+		<!-- Main -->
+			<div id="main">
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+							<header>
+								<h2 class="alt"><strong>Welcome! </strong>You can click <a href="../sign-in.html">here</a> to sign in .</h2><br />
+                                <h2>If you didn't have a account.Please call the manager.<span><a style="display:none" href="javascript:void(0)" id="exit" onclick="sign_out()">click here</a></span>
+                                    </h2>
+								<p>Maybe this is just a small-scale website, more just a personal tool</p><br />
+                                <p>Do not try to sign in</p>
+							</header>
+
+							<footer>
+								<a href="#portfolio" class="button scrolly">NEXT</a>
+							</footer>
+
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+
+							<header>
+								<h2>写在人生</h2>
+							</header>
+
+							<p>无论何时须谨记：树欲静而风不止</p>
+                            
+							<div class="row"id="text">                                
+
+							</div>
+                                
+						</div>
+					</section>
+
+				<!-- About Me -->
+					<section id="about" class="three">
+						<div class="container">
+
+							<header>
+								<h2>关于我</h2>
+							</header>
+                            <!--
+							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+-->
+							<p>这是个在期待好运来临的伪程序员</p>
+                            <br /><p>喜欢数独、扫雷这类游戏</p><br /><br /><br /><br /><br />
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>联系</h2>
+							</header>
+
+							<p>留言、意见或者建议，甚至是不满</p>
+
+							<form method="post" action="../ashx/report.ashx">
+								<div class="row">
+									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="12u$">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+                                    <input style="display:none" name="ip2" id="ip2"/>
+									<div class="12u$">
+										<input type="submit" value="发送消息" />
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li><a href="http://www.miitbeian.gov.cn">粤ICP备16071070号</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+        <script src="js/show.js"></script>
+        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+        <script type="text/javascript">
+            returnCitySN["cip"] + ',' + returnCitySN["cname"];            
+            document.getElementById("ip2").value = returnCitySN["cip"];
+        </script>
+        <script src="js/commons.js"></script>
+        <script type="text/javascript">
+            load();
+        </script>
+
+	</body>
+</html>

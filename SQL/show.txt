@@ -1,0 +1,13 @@
+use mytools
+go
+/*”√ªß±Ì*/
+CREATE TABLE show
+(
+id INT PRIMARY KEY,
+title NVARCHAR(255) NOT NULL,
+name NVARCHAR(25),
+text NVARCHAR(500) NOT NULL,
+state INT DEFAULT'0',
+changeTime DATETIME,
+sort INT DEFAULT '1'
+)

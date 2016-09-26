@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>代码生成</title>
+</head>
+<body>
+    <div>
+        选择数据库：
+        <select id="sql_choose">
+            <option></option>
+        </select>
+    </div>
+    <div>
+        选择需要生成的表:
+        <select id="table_choose">
+            <option></option>
+        </select>
+    </div>
+    <div>
+    <input type="button" id="save_sql" value="保存" />
+</div>
+    <div>
+        <a>新模板</a><a>旧模板</a><br />
+        <div style="display:none">
+            <textarea id="newTemp"></textarea>
+            <input type="button" id="bt_In_Temp" value="从文件中导入" />
+            <input type="button" id="bt_SaveTemp" value="保存模板" />
+        </div>
+        <div style="display:none">
+            <textarea id="oldTemp"></textarea>
+            <input type="button" id="bt_In_Temp2" value="从文件中导入" />
+            <input type="button" id="bt_SaveTemp2" value="保存模板" />
+        </div>
+        <div>
+            生成地址：
+            <input type="text" id="save_href" />
+            <input type="button" id="genertor" value="生成" />
+        </div>
+    </div>
+</body>
+</html>
